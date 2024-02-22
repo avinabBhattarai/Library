@@ -94,7 +94,7 @@ void login(){
         ask:
         printf("\nCreate User? (y/n) ");
         fflush(stdin);
-        scanf("%c", &choice);
+        scanf(" %c", &choice);
         if(choice == 'y' || choice == 'Y'){
             create_user("user");
         }else if(choice == 'n' || choice == 'N'){
@@ -138,7 +138,7 @@ void user_menu(){
     printf("\nR - Return books\n");
     choice:
     fflush(stdin);
-    scanf("%c", &choice);
+    scanf(" %c", &choice);
     switch(choice){
         case 'V':
             view_books();
@@ -167,7 +167,7 @@ void admin_menu(){
     printf("\nD - Remove user\n");
     choice:
     fflush(stdin);
-    scanf("%c", &choice);
+    scanf(" %c", &choice);
     switch(choice){
         case 'V':
             view_books();
@@ -228,7 +228,7 @@ void borrow_books(){
             found = true;
             if(strcmp(book.available, "yes") == 0){
                 printf("Book borrowed successfully\n");
-                fseek(book_data, -sizeof(book), SEEK_CUR);
+                fseek(book_data, -(long)sizeof(book), SEEK_CUR);
                 strcpy(book.available, "no");
                 fwrite(&book, sizeof(book), 1, book_data);
             }else{
@@ -259,7 +259,7 @@ void return_books(){
             printf("%s\t%s\t%d\t%s\n", book.book_name, book.author, book.edition, book.available);
             if(strcmp(book.available, "no") == 0){
                 printf("Book returned successfully\n");
-                fseek(book_data, -sizeof(book), SEEK_CUR);
+                fseek(book_data, -(long)sizeof(book), SEEK_CUR);
                 strcpy(book.available, "yes");
                 fwrite(&book, sizeof(book), 1, book_data);
             }else{
