@@ -123,6 +123,7 @@ void create_user(char r[]){
     fwrite(&user, sizeof(user), 1, user_data);
     fclose(user_data);
     printf("User created succesfully");
+    wait();
     if(byAdmin){
         admin_menu();
     }else{
@@ -240,8 +241,9 @@ void borrow_books(){
                 strcpy(book.available, "no");
                 fwrite(&book, sizeof(book), 1, book_data);
             }else{
-                printf("Book is borrowed by someonle else\n");
+                printf("Book is already borrowed\n");
             }
+            break;
         }
     }
     if(!found){
@@ -273,6 +275,7 @@ void return_books(){
             }else{
                 printf("Book not borrowed\n");
             }
+            break;
         }
     }
     fclose(book_data);
