@@ -135,7 +135,8 @@ void user_menu(){
     printf("\n\n\t\tMenu\n");
     printf("\nV - View books");
     printf("\nB - Borrow books");
-    printf("\nR - Return books\n");
+    printf("\nR - Return books");
+    printf("\nQ - Quit\n");
     choice:
     fflush(stdin);
     scanf(" %c", &choice);
@@ -148,6 +149,9 @@ void user_menu(){
             break;
         case 'R':
             return_books();
+            break;
+        case 'Q':
+            login();
             break;
         default:
             printf("Invalid choice\n");
@@ -164,7 +168,8 @@ void admin_menu(){
     printf("\nS - View users");
     printf("\nC - Add superuser");
     printf("\nU - Add user");
-    printf("\nD - Remove user\n");
+    printf("\nD - Remove user");
+    printf("\nQ - Quit\n");
     choice:
     fflush(stdin);
     scanf(" %c", &choice);
@@ -190,6 +195,9 @@ void admin_menu(){
             break;
         case 'D':
             remove_user();
+            break;
+        case 'Q':
+            login();
             break;
         default:
             printf("Invalid choice\n");
